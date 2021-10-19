@@ -1,0 +1,25 @@
+{{#if hasDatabaseError}}
+    <p class = "text-center">Database error occurred. Please try again later.</p>
+{{/if}}
+<h1 class = "text-center">All guestbook entries</h1>
+<a href = "/guestbook/create" class="p-centered text-center"><button class="btn btn-primary">Create a new Guestbook entry</button></a>
+<div class = "container">
+        <div class = "columns p-centered">
+            {{#unless entries.length}}
+                <p class = "text-center">There are no entries to be displayed</p>
+            {{/unless}}
+            {{#each entries}}
+                <div class = "column col-12 m-2 pt-2 text-center">
+                    <p><strong>Email:</strong> {{this.email}}</p>
+                    <p><strong>Name:</strong> {{this.name}}</p>
+                    <p><strong>Age:</strong> {{this.age}}</p>
+                    <p><strong>Message:</strong> {{this.entry}}</p>
+                    <a href = "/guestbook/{{this.id}}/comments"><button class="btn btn-secondary">Comment</button></a>
+                {{#if ../session.isLoggedIn}}
+                    <a href = "/guestbook/{{this.id}}/delete"><button class="btn btn-secondary">Delete this entry</button></a>
+                    <a href = "/guestbook/{{this.id}}/update"><button class="btn btn-secondary">Update this entry</button></a>
+                {{/if}}
+        </div>
+        {{/each}}
+    </div>
+</div>

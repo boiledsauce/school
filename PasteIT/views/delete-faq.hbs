@@ -1,0 +1,15 @@
+
+<div>
+{{#if error.length}}
+<ul>
+	{{#each error}}
+		<li>{{this}}</li>
+	{{/each}}
+</ul>
+{{else}}
+<form action="/faqs/{{id}}/delete" method="post">
+	<input type="hidden" name="_csrf" value="{{csrfToken}}">
+	<button type="submit">Delete</button>
+</form>
+</div>
+{{/if}}

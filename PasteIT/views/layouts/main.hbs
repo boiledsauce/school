@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <meta charset="UTF-8">
+    <title>Hello</title>
+  </head>
+  <body >
+    <div class = "hero bg-primary text-center">
+      <div class = "hero-body text-bold">
+        <h1>PasteIT</h1>
+        <h3>Save your random paste here.</h3>
+    </div>
+</div>
+<div class="container">
+  <div class="columns">
+  <div class="columns col-2 p-centered bg-secondary">
+  <nav class="text-large">
+		<ul class="nav text-center">
+      <li class="nav-item">
+        <li>
+          {{#if session.isLoggedIn}}
+          <p>You are logged in</p>
+          {{/if}}
+        </li>
+			  <li><a href="/">Start</a></li>
+		  	<li><a href="/about">About</a></li>
+			  <li><a href="/contact">Contact</a></li>
+        <li><a href="/auth/login">Log in</a></li>
+			  <li><a href="/pastes">Pastes</a></li>
+        <li><a href="/faqs">FAQ</a></li>
+        <li><a href="/guestbook">Guestbook</a></li>
+      </li>
+		</ul>
+	</nav>
+  </div>
+  <div class="column col-8 bg-white text-muted ">
+      <main>
+      {{{body}}}
+      </main>
+  </div>
+    <div class="column col-2 bg-secondary text-center">
+      <p>Lorem ipsum dolor</p></div>
+</div>
+</div>
+<div class="container">
+  <div class="columns">
+    <div class="columns col-12 p-centered bg-secondary"> 
+          <p class = "text-center">Copyright »PasteIT all rights reserved»</p>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

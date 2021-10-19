@@ -1,0 +1,27 @@
+<div class = "text-center">
+<h1>Contact us!</h1>
+  <p>Feel free to contact either of us who manage this website!</p>
+  <p>We are all happy to talk at any time of the day and weekend.</p>
+</div>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#if employees.length}}
+	{{#each employees}}
+      <tr>
+			<td>{{this.name}}</td>
+			<td>{{this.email}}</td>
+			<td>{{this.phone}}</td>
+		</tr>
+	{{/each}}
+{{else}}
+	<p>There is no way to contact us at the moment.</p>
+{{/if}}
+  </tbody>
+</table>

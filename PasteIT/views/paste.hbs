@@ -1,0 +1,12 @@
+<div class = "container text-center">
+{{#if paste}}
+	<h1>Paste ID: {{paste.id}}</h1>
+	<p>{{paste.post}}</p>
+{{else}}
+	<h1>Not found</h1>
+	<p>The paste doesn't exist.</p>
+	{{#each error}}
+		{{this}}
+	{{/each}}
+{{/if}}
+</div>

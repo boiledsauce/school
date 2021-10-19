@@ -1,0 +1,31 @@
+<h1>Update entry</h1>
+{{#if errors.length}}
+	<p>Couldn't update the entry:</p>
+	<ul>
+		{{#each errors}}
+			<li>{{this}}</li>
+		{{/each}}
+	</ul>
+{{/if}}
+<form action="/guestbook/{{id}}/update" method="POST">
+	<div class="form-group">
+  		<label class="form-label" for="input-example-3">Name</label>
+  		<textarea class="form-input" id="input-example-3" name="name" placeholder="Name" rows="1">{{entry.name}}</textarea>
+	</div>
+	<div class="form-group">
+  		<label class="form-label" for="input-example-3">Age</label>
+  		<textarea class="form-input" id="input-example-3" name="age" placeholder="Your age" rows="1">{{entry.age}}</textarea>
+	</div>
+	<div class="form-group">
+  		<label class="form-label" for="input-example-3">Email</label>
+  		<textarea class="form-input" id="input-example-3" name="email" placeholder="Your email" rows="1">{{entry.email}}</textarea>
+	</div>
+	<div class="form-group">
+  		<label class="form-label" for="input-example-3">Entry</label>
+  		<textarea class="form-input" id="input-example-3" name="entry" placeholder="Entry" rows="5">{{entry.entry}}</textarea>
+	</div>
+	<div>
+		<input type="hidden" name="_csrf" value="{{csrfToken}}">
+		<button type="submit">Update Entry</button>
+	</div>
+</form>

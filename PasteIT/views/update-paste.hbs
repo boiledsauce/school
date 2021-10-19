@@ -1,0 +1,23 @@
+<h1>Update paste</h1>
+{{#if errors.length}}
+	<p>Couldn't update the paste:</p>
+	<ul>
+		{{#each errors}}
+			<li>{{this}}</li>
+		{{/each}}
+	</ul>
+{{/if}}
+<form action="/pastes/{{id}}/update" method="POST">
+	<div>
+		<p>PasteName:</p>
+		<textarea name="name">{{paste.name}}</textarea>
+    </div>
+    <div>
+        <p>PastePost:</p>
+		<textarea name="post">{{paste.post}}</textarea>
+	</div>
+	<div>
+		<input type="hidden" name="_csrf" value="{{csrfToken}}">
+		<button type="submit">Update Paste</button>
+	</div>
+</form>

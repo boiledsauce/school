@@ -1,0 +1,21 @@
+{{#if hasDatabaseError}}
+    <p class = "text-center">Database error occurred. Please try again later.</p>
+{{/if}}
+<h1 class = "text-center">Frequently asked questions</h1>
+{{#if session.isLoggedIn}}
+<a href = "/faqs/create" class="p-centered text-center"><button class="btn btn-primary">Create a new FAQ</button></a>
+{{/if}}
+<div class = "container">
+    <div class = "columns">
+        {{#each faqs}}
+        <div class = "column col-5 m-2 pt-2 text-center">
+            <strong><p>Question: {{question}}</p></strong>
+            <p>Answer: {{answer}}</p>
+        {{#if ../session.isLoggedIn}}
+            <a href = "/faqs/{{id}}/update"><button class="btn btn-secondary">Update</button></a>
+            <a href = "/faqs/{{id}}/delete"><button class="btn btn-secondary">Delete</button></a>
+        {{/if}}
+        </div>
+        {{/each}}
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<h1>Update paste</h1>
+{{#if errors.length}}
+	<p>Cant update the FAQ:</p>
+	<ul>
+		{{#each errors}}
+			<li>{{this}}</li>
+		{{/each}}
+	</ul>
+{{else}}
+<form action="/faqs/{{id}}/update" method="POST">
+	<div>
+		<p>Question:</p>
+		<textarea name="question">{{faq.question}}</textarea>
+    </div>
+    <div>
+        <p>Answer:</p>
+		<textarea name="answer">{{faq.answer}}</textarea>
+	</div>
+	<div>
+		<input type="hidden" name="_csrf" value="{{csrfToken}}">
+		<button type="submit">Update FAQ</button>
+	</div>
+</form>
+{{/if}}

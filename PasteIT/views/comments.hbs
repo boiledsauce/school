@@ -1,0 +1,42 @@
+<div class = "container text-center">
+{{#if errors.length}}
+	{{#each errors}}
+		<p>{{this}}</p>
+	{{/each}}
+{{else}}
+	<h1>Create a comment</h2>
+	<a href = "/guestbook/{{id}}/comments/create" class="p-centered text-center"><button class="btn btn-primary">Create a comment</button></a>
+{{/if}}
+<h2>All comments</h2>
+{{#if comments.length}}
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Comment</th>
+		{{#if ../session.isLoggedIn}}
+			<th>Delete</th>
+			<th>Update</th>
+   		{{/if}}
+    </tr>
+  </thead>
+  <tbody>
+	{{#each comments}}
+      <tr>
+			<td>{{this.name}}</td>
+			<td>{{this.age}}</td>
+			<td>{{this.comment}}</td>
+			 {{#if ../session.isLoggedIn}}
+    		<td><a href = "/guestbook/{{this.id}}/comments/delete"><button class="btn btn-secondary">Delete this comment</button></a></td>
+    		<td><a href = "/guestbook/{{this.id}}/comments/update"><button class="btn btn-secondary">Update this comment</button></a></td>
+   			 {{/if}}
+		</tr>
+	{{/each}}
+{{else}}
+	<p>There are no comments to be displayed.</p>
+{{/if}}
+  </tbody>
+</table>
+
+</div>

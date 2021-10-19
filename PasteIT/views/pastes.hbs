@@ -1,0 +1,64 @@
+{{#if hasDatabaseError}}
+    <p class = "text-center">Database error occurred. Please try again later.</p>
+{{/if}}
+{{#if errors.length}}
+<ul>
+  {{#each errors}}
+   <li>{{this}}</li>
+  {{/each}}
+</ul>
+{{/if}}
+<div class = "text-center">
+<h1 class = "text-center">All currently available pastes</h1>
+<div class = "container">
+  <div class = "columns">
+    <div class = "column col-7">
+      <a href = "/pastes/create" class="p-centered text-center"><button class="btn btn-primary">Create a new paste</button></a>
+        </div class = "column col-5">
+          <form action="/pastes/search" method="GET">
+          <div class="input-group input mt-2">
+            <input class="form-input" name="search" type="text" placeholder="2021-01-03">
+            <button class="btn btn-primary input-group-btn" type="hidden" value="search">Search Paste</button>
+          </div>
+          </form>
+        </div>
+     </div>
+        {{#if pastes.length}}
+          <table class="table table-striped table-hover">
+            <thead>
+               <tr>
+                <th>PostName</th>
+                <th>Created Time</th>
+                <th>Redirection</th>
+                {{#if session.isLoggedIn}}
+                  <th>Delete</th>
+                  <th>Update</th>
+                {{/if}}
+              </tr>
+            </thead>
+            <tbody>
+            {{#each pastes}}
+              <tr>
+			            <td>{{name}}</td>
+                  <td>{{created_time}}</td>
+                  <td><a href = "/pastes/{{id}}"><button class="btn btn-primary">View Paste</button></a></td>
+                {{#if ../session.isLoggedIn}}
+                  <td><a href = "/pastes/{{id}}/delete"><button class="btn btn-secondary"> Delete this</button></a></td>
+                  <td><a href = "/pastes/{{id}}/update"><button class="btn btn-secondary"> Update this</button></a></td>
+                {{/if}}
+		          </tr>	
+            {{/each}}
+            </tbody>
+</table>
+{{#if prevPage}}
+  <a href = "/pastes/?page={{prevPage}}"><strong>Previous Page</strong></a>
+{{/if}}
+
+{{#if morePagesExist}}
+  <a href = "/pastes/?page={{nextPage}}"><strong>Next Page</strong></a>
+{{/if}}
+
+{{else}}
+  <p class = "mt-2">There are no pastes to be displayed at this moment</p>
+{{/if}}
+</div>
