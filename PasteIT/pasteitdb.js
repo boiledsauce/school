@@ -5,11 +5,11 @@ class pasteitdb {
     constructor(sqliteInstance) {
 
         this.db = sqliteInstance
-        this.initUsers()
-        this.initEmployees()
         this.initPaste()
         this.initGuestBook()
         this.initGuestBookComment()
+        this.initFaq()
+
         this.turnOnForeignKeySetting()
     }
 
@@ -48,21 +48,7 @@ class pasteitdb {
             )
     }
 
-    initEmployees() {
-        this.db.run
-            (
-
-                `CREATE TABLE IF NOT EXISTS guestbook 
-            (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                entry TEXT
-            );
-            `
-            )
-    }
-
-
-    initUsers() {
+    initFaq() {
         this.db.run
             (
                 `CREATE TABLE IF NOT EXISTS faq 

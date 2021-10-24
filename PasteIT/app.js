@@ -13,6 +13,9 @@ const guestbookRouter = require('./routers/guestbook-router')
 const app = express()
 const employees = require('./employees').employees
 
+const EXPRESS_PORT_RUNNING_ON = 8080
+const NOT_FOUND_STATUS = 404
+
 app.use(express.urlencoded({
 	extended: false
 }))
@@ -64,7 +67,7 @@ app.get('/account_management', function (request, response) {
 })
 
 app.get('*', function (request, response) {
-	response.sendStatus(httpStatus.StatusCodes.NOT_FOUND)
+	response.sendStatus(NOT_FOUND_STATUS)
 })
 
-app.listen(8080)
+app.listen(EXPRESS_PORT_RUNNING_ON)

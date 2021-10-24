@@ -51,7 +51,7 @@ router.get('/:id/comments/delete', csrfProtection, function (request, response) 
 router.post('/:id/comments/delete', csrfProtection, function (request, response) {
     const id = request.params.id
     const error = []
-
+    
     const model = {
         csrfToken: request.csrfToken(),
         error

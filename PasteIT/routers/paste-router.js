@@ -8,14 +8,12 @@ const timeUtil = require('../time_util')
 const paginate = require('express-paginate')
 const csrf = require('csurf')
 const csrfProtection = csrf()
-
-
 const LIMIT_QUERY_PER_PAGE = 10
 const MAX_RESULTS = 10 // unused - implemented pagination with only the help of the first parameter
+
 router.use(paginate.middleware(LIMIT_QUERY_PER_PAGE, MAX_RESULTS))
 
 router.get('/search', function (request, response) {
-
     const searchString = request.query.search
     const searchDateStrings = timeUtil.getEachDateStringFromString(searchString)
     const secondDateExists = timeUtil.secondDateExist(searchDateStrings)
@@ -99,15 +97,12 @@ router.get('/', csrfProtection, function (request, response) {
 })
 
 router.post('/create', csrfProtection, function (request, response) {
-
     const textContent = request.body.paste
     const nameOfText = request.body.name
     const unixTimeStamp = timeUtil.getCurUnixTime()
     const errors = validator.paste.getError(textContent, nameOfText)
 
     if (!validator.hasError(errors)) {
-        const values = [nameOfText, textContent, unixTimeStamp]
-
         db.createPaste(nameOfText, textContent, unixTimeStamp, function (error, pasteID) {
             if (error) {
                 errors.push(errorType.sql.SERVER_CANT_PROCESS_REQUEST)
@@ -116,7 +111,6 @@ router.post('/create', csrfProtection, function (request, response) {
                     errors,
                     csrfToken: request.csrfToken()
                 }
-
                 response.render('create-paste.hbs', model)
             }
             else {
@@ -137,6 +131,7 @@ router.post('/create', csrfProtection, function (request, response) {
 
 router.post('/:id/delete', csrfProtection, function (request, response) {
     const id = request.params.id
+
     if (!request.session.isLoggedIn) {
         const errors = []
         const model =
@@ -145,7 +140,6 @@ router.post('/:id/delete', csrfProtection, function (request, response) {
             errors,
             csrfToken: request.csrfToken()
         }
-
         model.errors.push(errorType.session.SESSION_NOT_AUTHORIZED)
         response.render('delete-paste.hbs', model)
         return
@@ -168,7 +162,6 @@ router.post('/:id/delete', csrfProtection, function (request, response) {
 })
 
 router.post('/:id/update', csrfProtection, function (request, response) {
-
     const id = request.params.id
     const pasteName = request.body.name
     const post = request.body.post
@@ -208,7 +201,6 @@ router.post('/:id/update', csrfProtection, function (request, response) {
 })
 
 router.get('/:id/update', csrfProtection, function (request, response) {
-
     const id = request.params.id
     const error = []
     const paste = null
@@ -239,7 +231,6 @@ router.get('/:id/update', csrfProtection, function (request, response) {
 })
 
 router.get('/:id/update', csrfProtection, function (request, response) {
-
     const id = request.params.id
     const error = []
     const paste = null
